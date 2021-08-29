@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ApolloProvider } from "@apollo/client"
 import { apolloClient } from "./graphql/client"
 import { SearchResultField } from "./components/SearchResultField"
-import { SearchForm } from './components/SearchForm';
+import { SearchForm } from './components/SearchForm'
+import { ShowPikachu } from './components/ShowPikachu'
 
 function App() {
   const [pokemonName, setpokemonName] = useState("")
@@ -12,6 +13,7 @@ function App() {
       <SearchForm setpokemonName={setpokemonName}></SearchForm>
       <ApolloProvider client={apolloClient}>
         {pokemonName && <SearchResultField pokemonName={pokemonName} />}
+        <ShowPikachu />
       </ApolloProvider>
     </>
   );

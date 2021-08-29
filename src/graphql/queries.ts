@@ -7,6 +7,20 @@ export const searchPikachu = gql`
       number
       name
       image
+      attacks {
+        fast {
+          name
+          type
+          damage
+        }
+      }
+      evolutions {
+        id
+      }
+      evolutionRequirements {
+        amount
+        name
+      }
     }
   }
 `

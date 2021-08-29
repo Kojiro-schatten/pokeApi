@@ -13,7 +13,6 @@ const SearchResultField: React.FC<Proptype> = ({ pokemonName }) =>  {
   if (!data || !data.pokemon) return <>No Data</>
   if (loading) return <>"Loading..."</>
   if (error) return <>`Error! ${error.message}`</>
-  console.log(data.pokemon)
   return (
     <div>
       <div>No: {data?.pokemon?.number}</div>
