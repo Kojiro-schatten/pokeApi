@@ -1,8 +1,12 @@
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | null; //genericsか、null
+//Tはkeyが文字列の配列でunknowであるオブジェクトを継承する。代入するのはTの直和型であるKと、Tに対してK型でアクセスして得られるType
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+// Omit: Kを除いたTのプロパティのタイプを構成する
+// subkeyはおそらく、二つ目のkey?? Kが
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
+// スカラー（基本型）：1つの値もしくはデータ型（整数、論理値、文字列など）
 export type Scalars = {
   ID: string;
   String: string;
@@ -67,6 +71,7 @@ export type PokemonAttack = {
 };
 
 /** Represents a Pokémon's dimensions */
+// 大きさ、min ~ maxまで
 export type PokemonDimension = {
   __typename?: 'PokemonDimension';
   /** The minimum value of this dimension */
