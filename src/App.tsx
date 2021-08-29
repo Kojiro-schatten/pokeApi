@@ -1,25 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ApolloProvider } from "@apollo/client"
+import { apolloClient } from "./graphql/client"
+import { SearchResultField } from "./components/SearchResultField"
+import { SearchForm } from './components/SearchForm';
 
 function App() {
+  const [pokemonName, setpokemonName] = useState("")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // ApolloProviderで括ることで、どのコンポーネントからもGraphQLのquery,mutationを実行することができるようになる
+    <>
+      <SearchForm setpokemonName={setpokemonName}></SearchForm>
+      <ApolloProvider client={apolloClient}>
+        {pokemonName && <SearchResultField pokemonName={pokemonName} />}
+      </ApolloProvider>
+    </>
   );
 }
 
